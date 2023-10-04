@@ -1,6 +1,6 @@
 FROM python:3.10-alpine3.17
 
-WORKDIR /code_tester/python_exec
+WORKDIR /code_ta/python_exec
 
 COPY ./requirements.txt ./
 
