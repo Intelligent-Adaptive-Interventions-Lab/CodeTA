@@ -1,0 +1,3 @@
+[submodule "adapt-program"]
+	path = adapt-program
+	url = git@github.com:Intelligent-Adaptive-Interventions-Lab/adapt-program.git
