@@ -4,12 +4,13 @@ EXPOSE 8080
 
 WORKDIR /code_ta
 
-COPY ./requirements.txt .
+COPY ./requirements.txt /tmp/requirements.txt
 
-RUN pip3 install -r requirements.txt
+RUN python -m venv /py && \
+    /py/bin/pip install --upgrade pip && \
+    /py/bin/pip install -r /tmp/requirements.txt && \
+    rm -rf /tmp
+
+ENV PATH="/py/bin:$PATH"
 
 COPY . .
-
-ENTRYPOINT ["python3"] 
-
-CMD ["manage.py", "runserver", "0.0.0.0:8080"]

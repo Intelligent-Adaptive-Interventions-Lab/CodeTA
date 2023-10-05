@@ -1,6 +1,16 @@
 version: "3"
 
 services:
+  # adapt-program:
+  #   build: 
+  #     context: ./adapt-program
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./adapt-program/yarn.lock:/adapt_program/yarn.lock
+  #   depends_on:
+  #     - code-ta
+
   code-ta:
     build:
       context: ./code-ta
@@ -8,3 +18,7 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./code-ta/db.sqlite3:/code_ta/db.sqlite3
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8080"
